@@ -1,0 +1,26 @@
+services:
+  jenkins:
+    build: .
+    privileged: true
+    networks:
+      - jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+      - "3000:3000"
+      - "5000:5000"
+      - "2376:2376"
+    volumes:
+      - "//var/run/docker.sock:/var/run/docker.sock"
+
+  nexus:
+    image: sonatype/nexus3:3.68.1
+    privileged: true
+    networks:
+      - jenkins
+    ports:
+      - "8081:8081"
+
+networks:
+  docker:
+  jenkins:

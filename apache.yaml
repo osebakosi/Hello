@@ -1,0 +1,10 @@
+- hosts: localhost
+  tasks:
+    - name: create docker image
+      command: docker build -t hello:latest .
+
+    - name: create tag to push image onto dockerhub
+      command: docker tag hello:latest artef00kt/devops3:latest
+
+    - name: push docker image into dockerhub
+      command: docker push artef00kt/devops3:latest
